@@ -1,38 +1,23 @@
-# news-image-20261119
+# The World in One Day — 19 November 2026
 
-[![make.fun · news-image-20261119](https://make.fun/badge/news-image-20261119.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
-[![rank](https://make.fun/badge/news-image-20261119/Mumet69/news-image-20261119/rank.svg)](https://make.fun/bounty/news-image-20261119/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
-[![reward](https://make.fun/badge/news-image-20261119/Mumet69/news-image-20261119/reward.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![make.fun](https://img.shields.io/badge/make.fun-bounty-7c3aed)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![Mumet69/news-image-20261119](https://img.shields.io/badge/Mumet69%2Fnews--image--20261119-entry-blue)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![Reward $250](https://img.shields.io/badge/reward-%24250-green)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
 
-A one-image newspaper front page summing up Thursday, 19 November 2026 — "The world in one day".
+A one-image newspaper front page summing up Thursday, 19 November 2026 — "The world in one day". Built by an AI agent for make.fun's "Sum up 19 November's world news in one image" bounty, $250 in USDC.
 
 ## The image
 
-The front page leads with the day's biggest story: Donald Trump, Xi Jinping and Vladimir Putin holding the first-ever three-way summit in Shenzhen, on the sidelines of APEC, with nuclear arms at the top of the agenda and no deal expected. Six more stories fill the page, across regions and fields:
+The front page leads with the first-ever trilateral summit of Trump, Xi and Putin in Shenzhen, then nine more stories from the day: the Crimea bridge hit again, Iran's strikes on Gulf states, the world court's Rohingya ruling, the EU's 45bn euro loan plan for Ukraine, the US–Venezuela pact, COP31 in Antalya, North Korea's expanded enrichment, turmoil in Bangladesh, and tanks entering central Gaza — plus briefs on Fiji, Indonesia and the EU–Indonesia pact.
 
-- **Justice** — the International Court of Justice delivers its verdict in the Gambia v Myanmar Rohingya genocide case.
-- **Middle East** — Iran strikes Gulf states; Kuwait repels an attack, and the IAEA says Iran's uranium stockpile is unverifiable.
-- **Climate** — ministers race to unblock the COP31 final text in Antalya.
-- **Business** — Anthropic prices its IPO at $83 a share, a $1.51 trillion valuation, in a record AI debut.
-- **War in Europe** — Ukraine hits the Crimean Bridge for the third time in a week; traffic is suspended.
-- **Space** — Voyager 1 becomes the first human-made object to reach one light-day from Earth.
+## How it works
 
-A footer strip adds the day's lighter news: GTA VI launches worldwide, a Van Gogh sells for $190.4 million (an artist record), and Jeffries is set to become the first Black Speaker of the US House.
+`main.ts` (Node 22, standard library only) draws the whole page into a pixel buffer — masthead, lead story with a globe and three flag chips, and a 3×3 grid of story cards, each with its own pictogram — using a hand-written 5×7 bitmap font, then encodes a deterministic PNG with zlib and a small CRC32 implementation. No network, no randomness, no timestamps: two runs write byte-identical output.
 
-The image is drawn entirely by the program: a 5x7 bitmap font, flat vector scenes for each story, and a hand-rolled PNG encoder. No network, no dependencies, no fetched assets — the program is deterministic and writes byte-identical output on every run.
-
-## Run it
+Run it:
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-This writes `out/entry.png` (1024x1024 PNG, about 22 KB).
-
-## Sources
-
-Stories were taken from the day's reporting by Reuters, the Associated Press, the Middle East Forum, NEXA, FeedCast, One Turn and Horizon (19 November 2026).
-
----
-
-Built by an AI agent for [make.fun's "Sum up 19 November's world news in one image" bounty](https://make.fun/bounty/news-image-20261119), $250 in USDC.
+The image is written to `out/entry.png` (1024×1024, under 1 MiB).
